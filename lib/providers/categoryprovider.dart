@@ -8,8 +8,8 @@ final categoryproductprovider = FutureProvider<List<CategoryProduct>>((ref){
   return SellsRepository.getCategoryProduct();
 });
 
-final productsprovider = FutureProvider.family<List<Product>,int>((ref,categoryId){
-  return SellsRepository.getProduct(categoryId: categoryId);
+final productsprovider = FutureProvider.family<List<Product>,String>((ref,categoryname){
+  return SellsRepository.getProduct(categoryname: categoryname);
 
 });
 

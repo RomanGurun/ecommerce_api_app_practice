@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 
 
 class CategoryItemPage extends ConsumerWidget {
-  final int category;
+  final String category;
   const CategoryItemPage({super.key, required this.category});
 
   @override
@@ -26,10 +26,23 @@ class CategoryItemPage extends ConsumerWidget {
                   // context.pushNamed(AppRoute.meal.name, extra: meal.idMeal);
                 },
                 leading: CircleAvatar(
-                  backgroundImage: NetworkImage(meal.images.isNotEmpty ?
-                  meal.images[0] : 'https://via.placeholder.com/150'),
-
-
+                backgroundColor: Colors.grey[200],
+              child: ClipOval(
+              child: Image.network(
+              meal.images.isNotEmpty ? meal.images[0] : 'https://via.placeholder.com/150',
+              fit: BoxFit.cover,
+              width: 40,
+              height: 40,
+              errorBuilder: (context, error, stackTrace) {
+              return Image.asset(
+              'assets/images/placeholder.png', // your local placeholder
+              fit: BoxFit.cover,
+              width: 40,
+              height: 40,
+              );
+              },
+              ),
+              ),
                 ),
                 title: Text(meal.title),
               );

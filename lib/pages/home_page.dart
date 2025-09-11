@@ -17,19 +17,46 @@ class HomePage extends ConsumerWidget {
               child: CustomScrollView(
                 slivers: [
                   SliverAppBar(
+
                     bottom: TabBar(
                         isScrollable: true,
                         tabAlignment: TabAlignment.start,
                         indicatorSize: TabBarIndicatorSize.label,
                         tabs: data.map((category){
-                          return Tab(text: category.name,);
-                        }).toList()
+                          return Tab(
+                            child:FittedBox(
+
+
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                              CircleAvatar(
+                              radius: 24,
+                              backgroundImage: NetworkImage(category.image),
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              category.name,
+                              style: const TextStyle(fontSize: 12),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.center,
+
+                                ),
+
+                              ],
+
+
+                          ),
+                            ),
+                          );
+                        }).toList(),
                     ),
                   ),
                   SliverFillRemaining(
                       child: TabBarView(
                         children: data.map((category){
-                          return CategoryItemPage( category: category.id,);
+                          return CategoryItemPage( category: category.slug);
 
 
                         }).toList(),

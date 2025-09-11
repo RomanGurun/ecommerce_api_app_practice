@@ -14,6 +14,7 @@ class SellsRepository{
   static final Dio dio = Dio();
   static Future<List<CategoryProduct>> getCategoryProduct() async{
     try{
+
       final response = await dio.get("https://api.escuelajs.co/api/v1/categories");
       return  (response.data as List)
           .map((e)=> CategoryProduct.fromJson(e)).toList();
@@ -25,9 +26,10 @@ class SellsRepository{
     }
   }
 
-  static Future<List<Product>> getProduct({required int categoryId}) async{
+  static Future<List<Product>> getProduct({required String categoryname}) async{
     try{
-      final response = await dio.get("https://api.escuelajs.co/api/v1/categories/$categoryId/products");
+
+      final response = await dio.get("https://api.escuelajs.co/api/v1/products/?categorySlug=${categoryname.trim()}");
       return (response.data as List)
           .map((e)=> Product.fromMap(e as Map<String,dynamic>)).toList();
 
