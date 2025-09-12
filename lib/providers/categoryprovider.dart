@@ -13,6 +13,11 @@ final productsprovider = FutureProvider.family<List<Product>,String>((ref,catego
 
 });
 
+final filterproductsprovider = FutureProvider.family<List<Product>,String>((ref,titlename){
+return SellsRepository.getSingleProduct(titlename: titlename);
+
+});
+
 final userprovider = FutureProvider<List<UserModel>>((ref){
   return SellsRepository.getUser();
 

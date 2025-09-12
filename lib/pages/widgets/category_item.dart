@@ -23,7 +23,7 @@ class CategoryItemPage extends ConsumerWidget {
 
               return ListTile(
                 onTap: (){
-                  // context.pushNamed(AppRoute.meal.name, extra: meal.idMeal);
+                  context.pushNamed(AppRoute.meal.name, extra: meal.title);
                 },
                 leading: CircleAvatar(
                 backgroundColor: Colors.grey[200],

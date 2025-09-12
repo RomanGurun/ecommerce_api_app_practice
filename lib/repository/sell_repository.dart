@@ -26,6 +26,7 @@ class SellsRepository{
     }
   }
 
+
   static Future<List<Product>> getProduct({required String categoryname}) async{
     try{
 
@@ -39,6 +40,25 @@ class SellsRepository{
 
     }
   }
+
+
+  static Future<List<Product>> getSingleProduct({required String titlename}) async{
+
+    try{
+      final response = await dio.get("https://api.escuelajs.co/api/v1/products/?title=$titlename");
+    return (response.data as List)
+        .map((e)=> Product.fromMap(e as Map<String,dynamic>)).toList();
+
+    }catch(err){
+      print(err);
+      throw "Something went wrong";
+
+    }
+
+
+  }
+
+
   static Future<List<UserModel>> getUser() async{
     try{
       final response = await dio.get("https://api.escuelajs.co/api/v1/users");
