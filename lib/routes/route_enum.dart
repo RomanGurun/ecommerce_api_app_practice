@@ -1,4 +1,6 @@
 enum AppRoute{
-  home,meal,form
-  
+  home,meal,form,
+  ecommerce,suggestion,
+  userpage
+
 }

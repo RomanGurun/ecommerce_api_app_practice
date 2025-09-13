@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:ecommerceapi/pages/widgets/category_item.dart';
 import 'package:ecommerceapi/providers/categoryprovider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+
+import '../routes/route_enum.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -53,19 +56,89 @@ class HomePage extends ConsumerWidget {
                         }).toList(),
                     ),
                   ),
-                  SliverFillRemaining(
-                      child: TabBarView(
+                  SliverToBoxAdapter(
+                  child: SizedBox(
+                  height: 300,
+                  child: TabBarView(
                         children: data.map((category){
                           return CategoryItemPage( category: category.slug);
 
 
                         }).toList(),
-                      )
-                  )
+                      ),
+                  ),
+                  ),
 
+            SliverToBoxAdapter(
+            child: Column(
+            children: [
+                    Container(
+                      padding: const EdgeInsets.all(4),
+                      // color: Colors.grey.shade200,
+                      child:ListTile(
+                        onTap: (){
+                          context.pushNamed(AppRoute.ecommerce.name);
+                        },
+                        leading: Container(
+                          child: Container(
+                            padding: const EdgeInsets.all(4),
+                            // color: Colors.grey.shade200,
+                            child: Text(
+                              "Suggestion Page",
+                              style: TextStyle(
+                                fontSize: 20,            // text size
+                                fontWeight: FontWeight.bold, // bold, w400, w500, etc.
+                                color: Colors.black,      // text color
+                              ),
+                              textAlign: TextAlign.center,   // center, left, right, justify
+                            ),
+
+
+
+                          ),
+                        ),
+
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(4),
+                      // color: Colors.grey.shade200,
+                      child:ListTile(
+                        onTap: (){
+                          context.pushNamed(AppRoute.userpage.name);
+                        },
+                        leading: Container(
+                          child: Container(
+                            padding: const EdgeInsets.all(4),
+                            // color: Colors.grey.shade200,
+                              child: Text(
+                                "User-Page",
+                                style: TextStyle(
+                                  fontSize: 20,            // text size
+                                  fontWeight: FontWeight.bold, // bold, w400, w500, etc.
+                                  color: Colors.black,      // text color
+                                 ),
+                                textAlign: TextAlign.center,   // center, left, right, justify
+                              ),
+
+
+                            ),
+                        ),
+
+                      ),
+                    ),
+
+
+
+                  ],
+                )
+
+            ),
                 ],
               ),
+
             );
+
           },
           error: (err, st){
             return Text(err.toString());
